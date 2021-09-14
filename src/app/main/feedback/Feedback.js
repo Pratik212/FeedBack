@@ -104,7 +104,7 @@ function FeedBack () {
                 value={formValues.inlineRadioOptions["1"]}
                 onChange={handleChange}
               />
-              <label className="form-check-label" htmlFor="inlineRadio1">Comments</label>
+              <label className="form-check-label" htmlFor="inlineRadio1">Comments in</label>
             </div>
             <div className="form-check col form-check-inline">
               <input
