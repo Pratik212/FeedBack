@@ -63,6 +63,8 @@ class Auth extends Component {
 
 			jwtService.init();
 
+
+
 			return Promise.resolve();
 		});
 
