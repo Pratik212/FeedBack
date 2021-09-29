@@ -1,5 +1,5 @@
 import React from 'react'
-import FeedBack from './app/feedback/Feedback'
+import FeedBack from './app/main/feedback/Feedback'
 
 function App () {
   return (

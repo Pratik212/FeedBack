@@ -1,20 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './FeedBack.css'
+import {useDispatch} from "react-redux";
+import {addFeedBack} from "./store/FeedBackSlice";
 
 function FeedBack () {
+  const dispatch = useDispatch();
   const initialValues = {
     firstName: '',
     lastName: '',
     description: '',
     email: '',
-    inlineRadioOptions: ''
+    inlineRadioOptions: {
+      1 : 'comments',
+      2 : 'suggestions',
+      3 : 'question'
+    }
   }
   const [formValues, setFormValues] = useState(initialValues)
   const [formErrors, setFormErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const submitForm = () => {
+  const data = {
+    firstName : formValues.firstName,
+    lastName : formValues.lastName,
+    description : formValues.description,
+    email : formValues.email,
+    inlineRadioOptions : formValues.inlineRadioOptions
+  }
+
+    dispatch(addFeedBack(data))
+    console.log("data::::::::::",data)
     console.log(formValues)
   }
 
@@ -84,10 +101,10 @@ function FeedBack () {
                 type="radio"
                 name="inlineRadioOptions"
                 id="inlineRadio1"
-                value="option1"
+                value={formValues.inlineRadioOptions["1"]}
                 onChange={handleChange}
               />
-              <label className="form-check-label" htmlFor="inlineRadio1">Comments</label>
+              <label className="form-check-label" htmlFor="inlineRadio1">Comments in</label>
             </div>
             <div className="form-check col form-check-inline">
               <input
@@ -95,7 +112,7 @@ function FeedBack () {
                 type="radio"
                 name="inlineRadioOptions"
                 id="inlineRadio2"
-                value="option2"
+                value={formValues.inlineRadioOptions["2"]}
                 onChange={handleChange}
               />
               <label className="form-check-label" htmlFor="inlineRadio2">Suggestions</label>
@@ -107,7 +124,7 @@ function FeedBack () {
                 name="inlineRadioOptions"
                 id="inlineRadio3"
                 onChange={handleChange}
-                value="option3"
+                value={formValues.inlineRadioOptions["3"]}
               />
               <label className="form-check-label" htmlFor="inlineRadio3">Questions</label>
             </div>
@@ -122,11 +139,11 @@ function FeedBack () {
             <h6 className="mb-3">Describe Your Feedback</h6>
             <div className="col">
                 <textarea
-                  className="form-control bg-transparent"
+                  className="form-control bg-white"
                   id="exampleFormControlTextarea4"
                   placeholder="Type here..."
                   rows="5"
-                  style={{color: 'white'}}
+                  style={{color: 'light'}}
                   onChange={handleChange}
                   name="description"
                   value={formValues.description}
@@ -142,10 +159,10 @@ function FeedBack () {
             <div className="col-6">
               <input
                 type="text"
-                className="form-control bg-transparent"
+                className="form-control bg-white"
                 name="firstName"
                 placeholder="First name"
-                style={{color: 'white'}}
+                style={{color: 'black'}}
                 onChange={handleChange}
                 value={formValues.firstName}
                 autoComplete="off"
@@ -157,10 +174,10 @@ function FeedBack () {
 
             <div className="col-6">
               <input type="text"
-                     className="form-control bg-transparent"
+                     className="form-control bg-white"
                      placeholder="Last name"
                      name="lastName"
-                     style={{color: 'white'}}
+                     style={{color: 'black'}}
                      value={formValues.lastName}
                      onChange={handleChange}
                      autoComplete="off"
@@ -175,9 +192,9 @@ function FeedBack () {
             <div className="col-6">
               <input
                 type="email"
-                className="form-control bg-transparent"
+                className="form-control bg-white"
                 placeholder="Email"
-                style={{color: 'white'}}
+                style={{color: 'black'}}
                 onChange={handleChange}
                 value={formValues.email}
                 name="email"
